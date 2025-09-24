@@ -483,10 +483,11 @@ PRPos is continuously evolving with exciting new features and improvements plann
 #### **Token Economics**
 - **Total Supply**: 1,000,000,000 $PRPOS tokens
 - **Fair Launch**: Decentralized launch on PumpFun platform
-- **Developer Allocation**: 3% (30,000,000 tokens) for development team
-- **Community Allocation**: 97% (970,000,000 tokens) for community distribution
+- **Developer Purchase**: 3% (30,000,000 tokens) bought by development team on launch
+- **Fair Game**: 97% (970,000,000 tokens) available for community - first come, first served
 - **No Pre-sale**: 100% fair launch with no private sales or pre-mine
-- **Liquidity Lock**: Initial liquidity locked for 2 years
+- **Revenue Model**: All trading fees go directly to bot development and maintenance
+- **Free Bot**: PRPos trading bot remains completely free to use
 
 #### **Token Utility**
 - **Governance**: Vote on protocol upgrades and new features
@@ -509,23 +510,31 @@ PRPos is continuously evolving with exciting new features and improvements plann
 ┌─────────────────────────────────────────────────────────────┐
 │                    PRPos Token Distribution                │
 ├─────────────────────────────────────────────────────────────┤
-│ Community & Fair Launch        │ 970M tokens (97%)        │
-│ Development Team               │ 30M tokens (3%)           │
+│ Fair Game (Community)          │ 970M tokens (97%)        │
+│ Developer Purchase (Launch)    │ 30M tokens (3%)           │
 │                                │                           │
-│ Community Allocation:          │                           │
-│ • PumpFun Fair Launch         │ 500M tokens (50%)         │
-│ • Liquidity Mining            │ 200M tokens (20%)         │
-│ • Community Rewards            │ 150M tokens (15%)         │
-│ • Ecosystem Development       │ 120M tokens (12%)         │
+│ Fair Game Allocation:          │                           │
+│ • PumpFun Fair Launch         │ 970M tokens (97%)         │
+│ • First Come, First Served    │ No restrictions           │
+│ • Community Owned             │ 100% community control    │
+│ • No Vesting                  │ Immediate ownership        │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+#### **Revenue & Development Model**
+- **Trading Fees**: All fees from bot usage fund development
+- **Free Bot**: No cost to use PRPos trading bot
+- **Community Funded**: Development supported by trading activity
+- **Transparent**: All revenue allocation publicly verifiable
+- **Sustainable**: Self-funding through user adoption
 
 #### **How to Participate**
 1. **Join Community**: Follow updates on social media
 2. **Prepare Wallet**: Set up Solana wallet (Phantom, Solflare)
 3. **Get SOL**: Acquire Solana tokens for participation
-4. **Launch Day**: Participate in fair launch on PumpFun
-5. **Early Adoption**: Benefit from early token holder rewards
+4. **Launch Day**: Buy tokens on PumpFun - it's fair game!
+5. **Use Free Bot**: Start trading with PRPos bot at no cost
+6. **Support Development**: Trading fees fund continued development
 
 ---
 
@@ -593,4 +602,7 @@ This software is for educational and research purposes only. Trading cryptocurre
 ---
 
 **Made with ❤️ by the PRPos Team**
+
+
+
 
