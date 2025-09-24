@@ -7,6 +7,8 @@
 
 **PRPos** is an autonomous perpetual trading bot for Solana that combines advanced technical analysis with robust risk management to execute profitable trading strategies.
 
+> **🌐 Visit our website: [prpos.fun](https://prpos.fun)** - Get the latest updates and access to our live trading bot!
+
 > **🚀 LIVE BOT COMING SOON!** This repository contains our **free test bot** and feedback system for development. Our **free onsite bot** and **Telegram bot** will go live soon! Stay tuned for the official launch.
 
 > **Created by [@aschnebel](https://github.com/aschnebel)** - A comprehensive trading bot solution for the Solana ecosystem
@@ -545,7 +547,7 @@ PRPos is continuously evolving with exciting new features and improvements plann
 - **GitHub Releases**: Follow releases for latest updates
 - **Discord Community**: Join our Discord for real-time updates
 - **Newsletter**: Subscribe to our newsletter for major announcements
-- **Twitter**: Follow [@PRPosBot](https://twitter.com/PRPosBot) for updates
+- **Twitter**: Follow [@PRPosBot](https://twitter.com/PRP_os) for updates
 - **Documentation**: Check our [Wiki](https://github.com/prpos/prpos-bot/wiki) for detailed guides
 
 ### 💡 **Contribute to the Future**
@@ -604,6 +606,5 @@ This software is for educational and research purposes only. Trading cryptocurre
 ---
 
 **Made with ❤️ by the PRPos Team**
-
 
 
