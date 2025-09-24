@@ -7,6 +7,8 @@
 
 **PRPos** is an autonomous perpetual trading bot for Solana that combines advanced technical analysis with robust risk management to execute profitable trading strategies.
 
+a soon to be multi-chain DEX that unifies Hyperliquid, Aster, and Quanto into a single platform. We give traders the ability to leverage anything, anywhere, all in one place. 
+
 > **🌐 Visit our website: [prpos.fun](https://prpos.fun)** - Get the latest updates and access to our live trading bot!
 
 > **🚀 LIVE BOT COMING SOON!** This repository contains our **free test bot** and feedback system for development. Our **free onsite bot** and **Telegram bot** will go live soon! Stay tuned for the official launch.
@@ -606,5 +608,6 @@ This software is for educational and research purposes only. Trading cryptocurre
 ---
 
 **Made with ❤️ by the PRPos Team**
+
 
 
