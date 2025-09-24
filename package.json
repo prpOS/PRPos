@@ -1,0 +1,70 @@
+{
+  "name": "prpos-bot",
+  "version": "0.1.1",
+  "description": "PRPos — The Perp Positioning System. Autonomous perp trading bot for Solana.",
+  "main": "dist/index.js",
+  "bin": {
+    "prpos": "dist/cli/prpos.js"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "seed": "ts-node prisma/seed.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "telebot": "ts-node src/integrations/telegram.ts",
+    "backtest": "ts-node src/cli/backtest.ts"
+  },
+  "keywords": [
+    "solana",
+    "trading",
+    "bot",
+    "perpetuals",
+    "defi",
+    "crypto"
+  ],
+  "author": "PRPos Team",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "@solana/web3.js": "^1.87.6",
+    "axios": "^1.6.2",
+    "commander": "^11.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "node-telegram-bot-api": "^0.64.0",
+    "prisma": "^5.7.1",
+    "winston": "^3.11.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.10.4",
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "@types/supertest": "^2.0.16",
+    "@types/ws": "^8.5.10",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

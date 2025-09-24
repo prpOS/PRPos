@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Backend API and Bot
+  backend:
+    build: .
+    container_name: prpos-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/dev.db
+      - SOLANA_RPC_URL=${SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
+      - WSS_ENDPOINT=${WSS_ENDPOINT:-ws://localhost:8900}
+      - DEX_PROGRAM_ID=${DEX_PROGRAM_ID:-DexExample11111111111111111111111111111111}
+      - MAX_LEVERAGE=${MAX_LEVERAGE:-10}
+      - RISK_PER_TRADE=${RISK_PER_TRADE:-0.02}
+      - NOTIFIER_WEBHOOK_URL=${NOTIFIER_WEBHOOK_URL}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - ADMIN_TELEGRAM_IDS=${ADMIN_TELEGRAM_IDS}
+      - API_AUTH_TOKEN=${API_AUTH_TOKEN:-replace_with_token}
+      - PORT=3000
+      - PRICE_FEED_INTERVAL=${PRICE_FEED_INTERVAL:-1000}
+      - SIMULATION_MODE=${SIMULATION_MODE:-true}
+      - SIMULATION_SEED=${SIMULATION_SEED:-42}
+      - SMA_SHORT_WINDOW=${SMA_SHORT_WINDOW:-9}
+      - SMA_LONG_WINDOW=${SMA_LONG_WINDOW:-21}
+      - MEAN_REVERSION_WINDOW=${MEAN_REVERSION_WINDOW:-20}
+      - MEAN_REVERSION_THRESHOLD=${MEAN_REVERSION_THRESHOLD:-2.0}
+      - DEFAULT_POSITION_SIZE=${DEFAULT_POSITION_SIZE:-0.1}
+      - MAX_POSITIONS=${MAX_POSITIONS:-5}
+      - STOP_LOSS_PERCENTAGE=${STOP_LOSS_PERCENTAGE:-0.05}
+      - TAKE_PROFIT_PERCENTAGE=${TAKE_PROFIT_PERCENTAGE:-0.1}
+    volumes:
+      - prpos_data:/app/data
+      - prpos_logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - prpos_network
+
+  # Frontend Dashboard
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: prpos-frontend
+    ports:
+      - "3001:3000"
+    environment:
+      - REACT_APP_API_URL=http://backend:3000/api
+      - REACT_APP_API_TOKEN=${API_AUTH_TOKEN:-replace_with_token}
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - prpos_network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: prpos-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+    networks:
+      - prpos_network
+
+volumes:
+  prpos_data:
+    driver: local
+  prpos_logs:
+    driver: local
+
+networks:
+  prpos_network:
+    driver: bridge

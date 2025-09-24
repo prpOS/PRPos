@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id        String   @id @default(cuid())
+  balance   Float    @default(10000)
+  margin    Float    @default(0)
+  leverage  Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("accounts")
+}
+
+model Trade {
+  id        String   @id @default(cuid())
+  side      String   // 'long' or 'short'
+  size      Float
+  price     Float
+  fees      Float    @default(0)
+  timestamp DateTime
+  status    String   @default("pending") // 'pending', 'filled', 'partial', 'cancelled', 'failed'
+  orderId   String?
+  strategy  String   @default("manual")
+  realizedPnl Float?
+  returnPercent Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("trades")
+}
+
+model Position {
+  id            String    @id @default(cuid())
+  side          String    // 'long' or 'short'
+  size          Float
+  entryPrice    Float
+  markPrice     Float
+  leverage      Float
+  margin        Float
+  unrealizedPnl Float     @default(0)
+  realizedPnl    Float     @default(0)
+  status        String    @default("open") // 'open', 'closed'
+  timestamp     DateTime
+  closeTimestamp DateTime?
+  closePrice    Float?
+  closeReason   String?
+  strategy      String    @default("manual")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("positions")
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  side      String   // 'long' or 'short'
+  size      Float
+  price     Float
+  type      String   // 'market' or 'limit'
+  status    String   @default("pending") // 'pending', 'filled', 'partial', 'cancelled', 'failed'
+  filledSize Float   @default(0)
+  avgPrice  Float?
+  fees      Float    @default(0)
+  timestamp DateTime
+  orderId   String?
+  strategy  String   @default("manual")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model PriceTick {
+  id        String   @id @default(cuid())
+  timestamp DateTime
+  price     Float
+  volume    Float
+  createdAt DateTime @default(now())
+
+  @@map("price_ticks")
+}
+
+model StrategyConfig {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  type        String   // 'sma', 'mean_reversion', 'custom'
+  parameters  String   // JSON string of strategy parameters
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("strategy_configs")
+}
+
+model TelegramUser {
+  id        String   @id @default(cuid())
+  userId    Int      @unique
+  username  String?
+  firstName String?
+  lastName  String?
+  isAdmin   Boolean  @default(false)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("telegram_users")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String   // 'trade', 'position', 'alert', 'error'
+  title     String
+  message   String
+  data      String?  // JSON string of additional data
+  isRead    Boolean  @default(false)
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@map("notifications")
+}
+
+model Metric {
+  id        String   @id @default(cuid())
+  type      String   // 'cumulative_pnl', 'returns', 'volatility', etc.
+  value     Float
+  label     String?
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@map("metrics")
+}
+
+model RiskEvent {
+  id          String   @id @default(cuid())
+  type        String   // 'liquidation', 'margin_call', 'stop_loss', 'take_profit'
+  positionId  String?
+  tradeId     String?
+  message     String
+  severity    String   // 'low', 'medium', 'high', 'critical'
+  data        String?  // JSON string of additional data
+  timestamp   DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  @@map("risk_events")
+}
+
+model BotConfig {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  type      String   @default("string") // 'string', 'number', 'boolean', 'json'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("bot_configs")
+}
